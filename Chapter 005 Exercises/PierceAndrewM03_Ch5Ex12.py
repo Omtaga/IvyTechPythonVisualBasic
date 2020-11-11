@@ -27,8 +27,8 @@ def inputHandling(question):
                 sys.exit("Quitting Program")
         else:
             # Makes sure input is greater than zero to avoid / by zero error or zero responses
-            if float(userInput) <= 0:
-                print("Your input must be greater than zero.")
+            if float(userInput) % 1 != 0:
+                print("Your input must be a whole number.")
                 userQuit = input("Hit enter to continue or type 'q' and enter to quit: ")
                 if userQuit == 'q':
                     sys.exit("Quitting Program")
@@ -55,9 +55,9 @@ def maximumOfTwoValues(valueOne, valueTwo):
 
 def main():
     print()
-    print('This program will check which number entered has the largest value.')
-    valueOne = inputHandling("Enter the first whole number.")
-    valueTwo = inputHandling("Enter the second whole number.")
+    print('This program will check which integer entered has the largest value.')
+    valueOne = int(inputHandling("Enter the first whole number: "))
+    valueTwo = int(inputHandling("Enter the second whole number: "))
     equalNumber = isEqual(valueOne, valueTwo)
     if equalNumber is False:
         largestNumber = maximumOfTwoValues(valueOne, valueTwo)
@@ -67,7 +67,7 @@ def main():
         print()
         print(f'Both values are equal. The maximum is the same: {valueOne}')
     print()
-    input('Press enter to exit...')
+    input('Press enter to exit... ')
 
 
 main()
