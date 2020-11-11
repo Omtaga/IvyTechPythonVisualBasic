@@ -36,6 +36,13 @@ def inputHandling(question):
                 return float(userInput)
 
 
+def isEqual(valueOne, valueTwo):
+    if valueOne != valueTwo:
+        return False
+    else:
+        return True
+
+
 def maximumOfTwoValues(valueOne, valueTwo):
     # This function always returns a number, if both numbers are equal it will return the first number.
     if valueOne > valueTwo:
@@ -47,7 +54,20 @@ def maximumOfTwoValues(valueOne, valueTwo):
 
 
 def main():
-    pass
+    print()
+    print('This program will check which number entered has the largest value.')
+    valueOne = inputHandling("Enter the first whole number.")
+    valueTwo = inputHandling("Enter the second whole number.")
+    equalNumber = isEqual(valueOne, valueTwo)
+    if equalNumber is False:
+        largestNumber = maximumOfTwoValues(valueOne, valueTwo)
+        print()
+        print(f'The largest number inputted was {largestNumber}')
+    else:
+        print()
+        print(f'Both values are equal. The maximum is the same: {valueOne}')
+    print()
+    input('Press enter to exit...')
 
 
 main()
