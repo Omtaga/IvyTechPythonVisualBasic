@@ -7,6 +7,7 @@
 import logging
 import sys
 import time
+import math
 
 
 # Handles all user input, expects numeric entry and responses > 0
@@ -38,12 +39,13 @@ def inputHandling(question):
 
 
 def is_prime(arg):
-    halfPlusOne = (arg / 2) + 1
+    # halfPlusOne removes the need to divide the candidate by numbers greater than half it's value.
+    halfPlusOne = math.ceil(arg / 2)
     increment = 2
     if arg == 2:
         return True
     else:
-        while increment < halfPlusOne:
+        while increment <= halfPlusOne:
             if arg % increment == 0:
                 return False
             elif increment == halfPlusOne:
@@ -55,11 +57,75 @@ def is_prime(arg):
 def first100primes():
     firstPrimes = []
     increment = 2
+    while increment < 100:
+        thisNumber = is_prime(increment)
+        if thisNumber:
+            firstPrimes.append(increment)
+        increment += 1
+    return firstPrimes
 
+
+def toAlpha(number):
+    toString = str(number)
+    ones = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine']
+    teens = ['eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen']
+    tens = ['ten', 'twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety']
+    if len(toString) > 3:
+        return int(number)
+    elif len(toString) < 2:
+        return ones[int(toString[0]) - 1]
+    elif len(toString) == 2:
+        if int(toString) % 10 == 0:
+            return tens[int(toString[0]) - 1]
+        else:
+            if toString[0] == '1':
+                return teens[int(toString[1]) - 1]
+            else:
+                return tens[int(toString[0]) - 1] + '-' + ones[int(toString[1]) - 1]
+    else:
+        if int(toString) % 100 == 0:
+            return ones[int(toString[0]) - 1] + ' hundred'
+        elif int(toString[2]) == 0:
+            return ones[int(toString[0]) - 1] + ' hundred ' + tens[int(toString[1]) - 1]
+        elif int(toString[1]) == 0:
+            return ones[int(toString[0]) - 1] + ' hundred ' + ones[int(toString[1]) - 1]
+        elif int(toString[1]) == 1:
+            return ones[int(toString[0]) - 1] + ' hundred ' + teens[int(toString[2]) - 1]
+        else:
+            return ones[int(toString[0])-1]+' hundred '+tens[int(toString[1])-1]+'-'+ones[int(toString[2])-1]
+
+
+def listToText(arg):
+    increment = 0
+    length = len(arg)
+    lineLength = 150
+    result = ""
+    while increment < length:
+        if increment == 0:
+            result += toAlpha(arg[increment])
+            increment += 1
+        else:
+            if len(result) > lineLength:
+                result += f",\n{toAlpha(arg[increment])}"
+                lineLength += 150
+            else:
+                result += f', {toAlpha(arg[increment])}'
+            increment += 1
+    return result
 
 
 def main():
-    pass
+    print()
+    userInput = int(inputHandling("Please enter a number to assess if it is prime:  "))
+    print()
+    userInputResult = is_prime(userInput)
+    print(f'The number {toAlpha(userInput)} is {"" if userInputResult else "not "}prime.')
+    print()
+    print('The first one-hundred primes are:')
+    oneHundredPrimesList = first100primes()
+    print(f'{listToText(oneHundredPrimesList)}')
+    print()
+    input('Press enter to continue...')
 
 
 main()
