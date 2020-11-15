@@ -25,13 +25,45 @@ def inputHandling(openFile):
             return total / increment
 
 
+def fileInputHandling(question, array):
+    while True:
+        try:
+            userInput = input(question)
+            isinstance(float(userInput), str)
+            userInput = int(userInput) - 1
+        except Exception:
+            logging.exception('Caught an error')
+            # Pauses program so that exception prints to screen
+            # and user sees next step to continue after error message.
+            time.sleep(1)
+            print("Your number needs to be entered with numeric keys.")
+            userQuit = input("Hit enter to continue or type 'q' and enter to quit: ")
+            if userQuit == 'q':
+                sys.exit("Quitting Program")
+        else:
+            # Makes sure input is greater than one.
+            if float(userInput) <= 1 or float(userInput) % 1 != 0 or float(userInput) > len(array) - 1:
+                print("Your input was invalid, please choose a file using the numerical keys.")
+                userQuit = input("Hit enter to continue or type 'q' and enter to quit: ")
+                if userQuit == 'q':
+                    sys.exit("Quitting Program")
+            else:
+                return int(userInput)
+
+
 def chooseFile():
     directory = os.listdir()
     increment = 1
     for files in directory:
         print(f'{increment}. {files}')
         increment += 1
-    fileChoice = int(input("Enter desired file: ")) - 1
+    fileChoice = fileInputHandling("Enter desired file: ", directory)
+    if fileChoice < 1 or fileChoice > len(directory) or fileChoice % 1 != 0:
+        print('Invalid input, please try again.')
+        userQuit = input("Hit enter to choose from a list or type 'q' and enter to quit: ")
+        if userQuit == 'q':
+            sys.exit("Quitting Program")
+        chooseFile()
     fileName = directory[fileChoice]
     return directory[fileChoice]
 
@@ -64,12 +96,12 @@ def fileQuestion():
     elif answer == '2':
         return False
     else:
-        print('Please phrase your response as "1" or "2".')
+        print('Your response was invalid, please choose a file from a list.')
         userQuit = input("Hit enter to continue or type 'q' and enter to quit: ")
         if userQuit == 'q':
             sys.exit("Quitting Program")
         else:
-            fileQuestion()
+            return True
 
 
 def main():
