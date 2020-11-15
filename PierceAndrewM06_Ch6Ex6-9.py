@@ -1,5 +1,5 @@
 # Ivy Tech - SDEV 140 - Introduction to Software Development
-# Chapter 5 Exercise 17-18. Prime Numbers and Prime Number List
+# Chapter 6 Exercise 6 & 9. Average of Numbers and Exception Handling
 # Andrew M. Pierce  Associate of Applied Science - Software Development
 # Python 3.8.6
 
