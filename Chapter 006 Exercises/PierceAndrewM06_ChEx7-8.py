@@ -34,27 +34,10 @@ def inputHandling(question):
                 return float(userInput)
 
 
-def fileClearninghouse(openFile):
-    while True:
-        try:
-            total = 0
-            increment = 0
-            for line in openFile:
-                lineAmount = float(line.rstrip('\n'))
-                total += lineAmount
-                increment += 1
-        except ValueError:
-            logging.exception('Caught an error')
-            time.sleep(1)
-        else:
-            return total / increment
-
-
 def writeRandom(openFile, userNumber):
     increment = 0
     while increment < userNumber:
         randomNumber = str(random.randint(1, 500))
-        print(randomNumber)
         openFile.write(randomNumber + '\n')
         increment += 1
 
@@ -66,7 +49,6 @@ def randomReader(openFile):
             for line in openFile:
                 lineAmount = line.rstrip('\n')
                 numbersInFile.append(lineAmount)
-                print(numbersInFile)
         except ValueError:
             logging.exception('Caught an error')
             time.sleep(1)
@@ -77,7 +59,7 @@ def randomReader(openFile):
 def listToText(arg):
     increment = 0
     length = len(arg)
-    lineLength = 150
+    lineLength = 130
     result = ""
     while increment < length:
         if increment == 0:
@@ -86,7 +68,7 @@ def listToText(arg):
         else:
             if len(result) > lineLength:
                 result += f",\n{arg[increment]}"
-                lineLength += 150
+                lineLength += 130
             else:
                 result += f', {arg[increment]}'
             increment += 1
@@ -99,12 +81,15 @@ def main():
     openFile = open('andrewRandom.txt', 'w')
     writeRandom(openFile, userNumber)
     openFile.close()
-    openFile = open(openFile, 'r')
+    openFile = open('andrewRandom.txt', 'r')
     result = randomReader(openFile)
-    print('The numbers created are:')
+    print('The numbers created were:')
     print(f'{listToText(result)}')
-    print(f'The total of those numbers is {sum(result)}')
-    print(f'The number of random numbers read from the file is {len(result)}')
+    for i in range(0, len(result)):
+        result[i] = int(result[i])
+    Sum = sum(result)
+    print(f'The total of those numbers is: {Sum}')
+    print(f'The number of random numbers read from the file was {len(result)}.')
     openFile.close()
 
 
