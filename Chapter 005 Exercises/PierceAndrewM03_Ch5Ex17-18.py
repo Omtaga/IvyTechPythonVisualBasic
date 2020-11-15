@@ -121,11 +121,12 @@ def main():
     userInputResult = is_prime(userInput)
     print(f'The number {toAlpha(userInput)} is {"" if userInputResult else "not "}prime.')
     print()
-    print('The first one-hundred primes are:')
+    print('The primes between one and one-hundred are:')
     oneHundredPrimesList = first100primes()
     print(f'{listToText(oneHundredPrimesList)}')
     print()
     input('Press enter to continue...')
 
 
-main()
+if __name__ == "__main__":
+    main()
