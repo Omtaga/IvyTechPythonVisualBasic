@@ -63,6 +63,7 @@ def output(week, day, salesTotal):
 
 def main():
     week = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+    print('\nEnter sales for each day to see the sales for the past week.')
     salesTotalAndDay = userInput(week)
     salesTotal = computeSalesTotal(salesTotalAndDay[0])
     day = salesTotalAndDay[1]
