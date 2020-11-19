@@ -50,11 +50,7 @@ def computeSalesTotal(weeklyTotal):
     return result
 
 
-def main():
-    week = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
-    salesTotalAndDay = userInput(week)
-    salesTotal = computeSalesTotal(salesTotalAndDay[0])
-    day = salesTotalAndDay[1]
+def output(week, day, salesTotal):
     if salesTotal == 0:
         print('There were no sales for this week.')
     elif day == 0:
@@ -63,6 +59,14 @@ def main():
         print(f'Sales for Sunday and Monday were ${salesTotal:,.2f}.')
     else:
         print(f'Sales for Sunday thru {week[day]} was ${salesTotal:,.2f}.')
+
+
+def main():
+    week = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+    salesTotalAndDay = userInput(week)
+    salesTotal = computeSalesTotal(salesTotalAndDay[0])
+    day = salesTotalAndDay[1]
+    output(week, day, salesTotal)
 
 
 if __name__ == '__main__':
