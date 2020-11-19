@@ -13,19 +13,17 @@ def main():
         if word == "i":
             word = "I"
         inputList.append(word)
-        yesNo = input('Type "y" or "n" if you\'d like to continue: ')
-        if yesNo == "Yes" or yesNo == "yes" or yesNo == "Y" or yesNo == "y":
+        if word:
             continueInput = True
         else:
             continueInput = False
+            del inputList[-1]
     inputList[0] = inputList[0].capitalize()
-    increment = 1
-    for words in inputList:
-        if increment == len(inputList):
-            result += words
+    for index in range(len(inputList)):
+        if index == len(inputList) - 1:
+            result += inputList[index]
         else:
-            result += words + " "
-        increment += 1
+            result += inputList[index] + " "
     print(f'{result}.')
     plural = ""
     isAre = ""
