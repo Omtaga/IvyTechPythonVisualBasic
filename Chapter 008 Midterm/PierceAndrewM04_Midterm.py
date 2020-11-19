@@ -13,11 +13,11 @@ def main():
         if word == "i":
             word = "I"
         inputList.append(word)
-        if word:
+        yesNo = input('Type "y" to continue or anything else to stop: ')
+        if yesNo == "Yes" or yesNo == "yes" or yesNo == "Y" or yesNo == "y":
             continueInput = True
         else:
             continueInput = False
-            del inputList[-1]
     inputList[0] = inputList[0].capitalize()
     for index in range(len(inputList)):
         if index == len(inputList) - 1:
