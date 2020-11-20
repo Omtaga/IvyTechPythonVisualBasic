@@ -9,6 +9,7 @@ import time
 
 
 def inputHandling(question):
+    # Takes user input question and checks to make sure input is a number. Output is a float.
     while True:
         try:
             typedAmount = input(question)
@@ -27,6 +28,7 @@ def inputHandling(question):
 
 
 def userInput(week):
+    # Take input from user, expects a number, returns array of numbers and number of day of week of last input.
     day = 0
     inputAmount = []
     continueInput = True
@@ -44,6 +46,7 @@ def userInput(week):
 
 
 def computeSalesTotal(weeklyTotal):
+    # Takes array argument and totals a result, returns a float.
     result = 0
     for dailyTotal in weeklyTotal:
         result += float(dailyTotal)
@@ -51,6 +54,7 @@ def computeSalesTotal(weeklyTotal):
 
 
 def output(week, day, salesTotal):
+    # Takes days of week, and outputs last date input along with formatting for correct grammar for output.
     if salesTotal == 0:
         print('There were no sales for this week.')
     elif day == 0:
@@ -66,6 +70,7 @@ def main():
     print('\nEnter sales for each day to see the sales for the past week.')
     salesTotalAndDay = userInput(week)
     salesTotal = computeSalesTotal(salesTotalAndDay[0])
+    # Takes number from salesTotalAndDay and converts to variable day help with clarity of arg in output.
     day = salesTotalAndDay[1]
     output(week, day, salesTotal)
 
