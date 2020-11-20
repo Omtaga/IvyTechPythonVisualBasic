@@ -52,9 +52,9 @@ def chooseFile():
     return directory[fileChoice]
 
 
-def checkFile(programInput):
+def checkFile(ifValid):
     try:
-        usableFile = open(programInput, 'r')
+        usableFile = open(ifValid, 'r')
     except IOError:  # IOError ValueError
         logging.exception('Caught an error')
         time.sleep(1)
@@ -66,30 +66,29 @@ def checkFile(programInput):
         return checkFile(newInput)
     else:
         usableFile.close()
-        return programInput
+        return ifValid
 
 
-def importFile(fileName):
+def importFile(name):
     outputList = []
-    openFile = open(fileName, 'r')
-    for name in openFile:
-        correctedName = name.rstrip('\n')
-        outputList += correctedName
+    openFile = open(name, 'r')
+    for paragraph in openFile:
+        simplified = paragraph.rstrip('\n')
+        outputList += simplified
     openFile.close()
+    upper = 0
     lower = 0
     digit = 0
     space = 0
-    upper = 0
     for character in outputList:
         if character.isupper():
             upper += 1
+        elif character.isalpha():
+            lower += 1
         elif character.isdigit():
             digit += 1
         elif character.isspace():
             space += 1
-        elif character.isalpha():
-            lower += 1
-    fileName.close()
     return upper, lower, digit, space
 
 
