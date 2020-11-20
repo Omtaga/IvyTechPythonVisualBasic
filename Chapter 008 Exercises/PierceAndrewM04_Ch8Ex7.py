@@ -11,7 +11,7 @@ import os
 FILE_LOCATION = 'text.txt'
 
 
-def fileInputHandling(question, array):
+def checkUserChoice(question, array):
     while True:
         try:
             userInput = input(question)
@@ -42,7 +42,7 @@ def chooseFile():
     for files in directory:
         print(f'{increment}. {files}')
         increment += 1
-    fileChoice = fileInputHandling("Enter desired file: ", directory)
+    fileChoice = checkUserChoice("Enter desired file: ", directory)
     if fileChoice < 0 or fileChoice >= len(directory) or fileChoice % 1 != 0:
         print('Invalid input, please try again.')
         userQuit = input("Hit enter to choose from a list or type 'q' and enter to quit: ")
