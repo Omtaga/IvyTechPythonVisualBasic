@@ -89,6 +89,7 @@ def importFile(fileName):
             space += 1
         elif character.isalpha():
             lower += 1
+    fileName.close()
     return upper, lower, digit, space
 
 
