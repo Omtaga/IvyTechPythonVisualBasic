@@ -26,8 +26,7 @@ def inputHandling(question):
             if userQuit == 'q':
                 sys.exit("Quitting Program")
         else:
-            typedInput = typedInput.lower()
-            typedInput = typedInput.capitalize()
+            typedInput = typedInput.lower().capitalize()
             return typedInput
 
 
@@ -50,20 +49,21 @@ def output(theName, sex, result):
 
 def popularName(theName, boyNames, girlNames):
     if theName in boyNames and theName in girlNames:
-        output(theName, "boy and girl", True)
+        return "boy and girl", True
     elif theName in boyNames:
-        output(theName, "boy", True)
+        return "boy", True
     elif theName in girlNames:
-        output(theName, "girl", True)
+        return "girl", True
     else:
-        output(theName, "", False)
+        return "", False
 
 
 def main():
     boyNames = importFile(FILE_LOCATIONS[0])
     girlNames = importFile(FILE_LOCATIONS[1])
     theName = inputHandling("\nEnter a name to see if it was a popular baby name between 2000 to 2009: ")
-    popularName(theName, boyNames, girlNames)
+    result = popularName(theName, boyNames, girlNames)
+    output(theName, result[0], result[1])
 
 
 if __name__ == '__main__':
