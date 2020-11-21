@@ -12,6 +12,8 @@ FILE_LOCATION = 'text.txt'
 
 
 def checkUserChoice(question, array):
+    # If provided file choice fails this function forces user to choose a file from program directory or quit program.
+    # Returns verified int or quits, users initiated program end.
     while True:
         try:
             userInput = input(question)
@@ -37,6 +39,8 @@ def checkUserChoice(question, array):
 
 
 def chooseFile():
+    # If provided file is misspelled or missing, allows user to choose from active program directory or quit
+    # returns string of user selected file name or user initiated program termination.
     directory = os.listdir()
     increment = 1
     for files in directory:
@@ -53,6 +57,8 @@ def chooseFile():
 
 
 def checkFile(ifValid):
+    # Checks if default file provided is available, if file check fails runs chooseFile().
+    # returns string of valid default file name or user selected input. User allowed to terminate program on check fail.
     try:
         usableFile = open(ifValid, 'r')
     except IOError:  # IOError ValueError
@@ -70,6 +76,9 @@ def checkFile(ifValid):
 
 
 def importFile(name):
+    # Takes valid file and checks all characters for string types, checks upper first and then alpha to check for
+    # lowercase characters.
+    # Returns four integers.
     outputList = []
     openFile = open(name, 'r')
     for paragraph in openFile:
@@ -93,6 +102,7 @@ def importFile(name):
 
 
 def output(name, uppercase, lowercase, digits, whitespace):
+    # Prints to screen results of select data gathered from file.
     print(f'\nThe file "{name}" contains the following content:')
     print(f'Uppercase Letters: {uppercase}')
     print(f'Lowercase Letters: {lowercase}')
@@ -101,8 +111,12 @@ def output(name, uppercase, lowercase, digits, whitespace):
 
 
 def main():
+    # Checks for valid file. Attempts to use default file name, global constant located at top of this program
+    # named FILE_LOCATION (approx line 11).
     thatExists = checkFile(FILE_LOCATION)
+    # Reads data from file and returns it.
     result = importFile(thatExists)
+    # Takes data read from file and outputs.
     output(thatExists, result[0], result[1], result[2], result[3])
 
 
