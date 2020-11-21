@@ -28,7 +28,8 @@ def inputHandling(question):
 
 
 def userInput(week):
-    # Take input from user, expects a number, returns array of numbers and number of day of week of last input.
+    # Take input from user, expects a number, returns array of numbers and number of day of week of
+    # last input.
     day = 0
     inputAmount = []
     continueInput = True
@@ -68,7 +69,9 @@ def output(week, day, salesTotal):
 def main():
     week = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
     print('\nEnter sales for each day to see the sales for the past week.')
+    # Asks for user input of sales amounts for each day of week sales are available.
     salesTotalAndDay = userInput(week)
+    # Takes list of sales from userInut() and creates/returns sum.
     salesTotal = computeSalesTotal(salesTotalAndDay[0])
     # Takes number from salesTotalAndDay and converts to variable day help with clarity of arg in output.
     day = salesTotalAndDay[1]
