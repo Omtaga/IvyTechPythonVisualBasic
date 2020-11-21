@@ -13,6 +13,8 @@ FILE_LOCATIONS = ['BoyNames.txt', 'GirlNames.txt']
 
 
 def checkUserChoice(question, array):
+    # Checks user input from list generated from chooseFile() returns verified input or quits program on
+    # user request
     while True:
         try:
             userInput = input(question)
@@ -38,6 +40,8 @@ def checkUserChoice(question, array):
 
 
 def chooseFile(sex):
+    # After failure to use expected file, this function forces choice from list or program termination.
+    # Returns user selected file into program or quits on user command.
     directory = os.listdir()
     increment = 1
     for files in directory:
@@ -49,11 +53,12 @@ def chooseFile(sex):
         userQuit = input("Hit enter to choose from a list or type 'q' and enter to quit: ")
         if userQuit == 'q':
             sys.exit("Quitting Program")
-        chooseFile()
+        chooseFile(sex)
     return directory[fileChoice]
 
 
 def checkFile(ifValid, sex):
+    # Checks to make sure expected file is available. Returns string of file name.
     try:
         usableFile = open(ifValid, 'r')
     except IOError:  # IOError ValueError
@@ -63,6 +68,8 @@ def checkFile(ifValid, sex):
         userQuit = input("Hit enter to choose from a list or type 'q' and enter to quit: ")
         if userQuit == 'q':
             sys.exit("Quitting Program")
+        # Handles missing or misspelled file and passes expected sex of file to aid user in selecting
+        # correct file.
         newInput = chooseFile(sex)
         return checkFile(newInput, sex)
     else:
@@ -71,8 +78,10 @@ def checkFile(ifValid, sex):
 
 
 def inputHandling(question):
+    # Takes user input and verifies provided name does not contain invalid name characters. Returns string.
     while True:
         typedInput = input(question)
+        # Raises exception if input does not contain only alphanumerics, allowing correct input.
         if typedInput.isalpha():
             typedInput = typedInput.lower().capitalize()
             return typedInput
@@ -91,6 +100,7 @@ def inputHandling(question):
 
 
 def importFile(fileName):
+    # Takes input from validated file (exists but not content) and returns list of strings in file.
     outputList = []
     openFile = open(fileName, 'r')
     for name in openFile:
@@ -101,6 +111,7 @@ def importFile(fileName):
 
 
 def output(theName, sex, result):
+    # Prints output of user provided name, sex and result of list searches.
     if result:
         print(f"{theName} was a popular {sex} name from 2000 through 2009!")
     else:
@@ -108,6 +119,8 @@ def output(theName, sex, result):
 
 
 def popularName(theName, boyNames, girlNames):
+    # Creates grammar for output and passes string and a boolean result of search in list of boy
+    # and girl files.
     if theName in boyNames and theName in girlNames:
         return "boy and girl", True
     elif theName in boyNames:
@@ -119,6 +132,10 @@ def popularName(theName, boyNames, girlNames):
 
 
 def main():
+    # Default file names provided in constant FILE_LOCATIONS located at the top of this
+    # program (approx line 12).
+    # The next two lines verifies the location and availability of the files, gives option to
+    # choose from list if file names incorrect or file not available.
     boyFile = checkFile(FILE_LOCATIONS[0], 'boy')
     girlFile = checkFile(FILE_LOCATIONS[1], 'girl')
     boyNames = importFile(boyFile)
