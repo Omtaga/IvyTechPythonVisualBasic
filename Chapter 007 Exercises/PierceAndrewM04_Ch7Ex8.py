@@ -138,10 +138,14 @@ def main():
     # choose from list if file names incorrect or file not available.
     boyFile = checkFile(FILE_LOCATIONS[0], 'boy')
     girlFile = checkFile(FILE_LOCATIONS[1], 'girl')
+    # Next to lines reads data from provided files and saves data to lists.
     boyNames = importFile(boyFile)
     girlNames = importFile(girlFile)
+    # Verifies user input is at least alphanumerics, not poor decisions.
     theName = inputHandling("\nEnter a name to see if it was a popular baby name between 2000 to 2009: ")
+    # Checks user provided name and returns sex of result and boolean if found.
     result = popularName(theName, boyNames, girlNames)
+    # Output name, sex if name found and if name was found.
     output(theName, result[0], result[1])
 
 
