@@ -71,7 +71,7 @@ def main():
     print('\nEnter sales for each day to see the sales for the past week.')
     # Asks for user input of sales amounts for each day of week sales are available.
     salesTotalAndDay = userInput(week)
-    # Takes list of sales from userInut() and creates/returns sum.
+    # Takes list of sales from userInput() and creates/returns sum.
     salesTotal = computeSalesTotal(salesTotalAndDay[0])
     # Takes number from salesTotalAndDay and converts to variable day help with clarity of arg in output.
     day = salesTotalAndDay[1]
