@@ -7,16 +7,13 @@ class Car:
     def __init__(self, year, make):
         self.__year_model = year
         self.__make = make
-        self._speed = 0
-
-    def get_year(self):
-        pass
+        self.__speed = 0
 
     def accelerate(self):
-        self._speed += 5
+        self.__speed += 5
 
     def brake(self):
-        self._speed -= 5
+        self.__speed -= 5
 
     def get_speed(self):
-        return self._speed
+        return self.__speed
