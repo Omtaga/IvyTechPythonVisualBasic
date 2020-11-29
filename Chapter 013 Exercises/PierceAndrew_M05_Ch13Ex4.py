@@ -83,7 +83,7 @@ class TempConverterGUI:
 
         # Convert fahrenheit to a string and store it
         # in the StringVar object. This will automatically
-        # update the miles_label widget.
+        # update the widget.
         self.value.set(f'{fahrenheit:,.1f} Fahrenheit.')
 
     def convert_celsius(self):
